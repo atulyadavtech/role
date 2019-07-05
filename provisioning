@@ -10,6 +10,11 @@ mkdir /var/lib/tftpboot/pxelinux.cfg
 mkdir /var/lib/tftpboot/pxeboot
 mkdir /var/lib/tftpboot/media
 
+
+/var/lib/tftpboot/pxeboot
+vmlinuz 
+initrd.img
+
 #Xinetd Config
 sed -i 's/disable\t\t\t= yes/disable = no/' /etc/xinetd.d/tftp
 
