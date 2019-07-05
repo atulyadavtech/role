@@ -8,7 +8,7 @@ systemctl enable xinetd httpd dhcpd
 
 
 
-cp /usr/share/syslinux/{pxelinux.0,vesamenu.c32,ldlinux.c32,libcom32.c32,libutil.c32} /var/lib/tftpboot/
+cp /usr/share/syslinux/{pxelinux.0,vesamenu.c32,ldlinux.c32,libcom32.c32,libutil.c32,menu.c32} /var/lib/tftpboot/
 mkdir /var/lib/tftpboot/pxelinux.cfg
 mkdir /var/lib/tftpboot/pxeboot
 mkdir -p /var/lib/tftpboot/media/ks
