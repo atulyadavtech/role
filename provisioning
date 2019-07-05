@@ -3,6 +3,9 @@
 #Required Package
 yum install dhcp tftp tftp-server syslinux xinetd httpd -y
 
+systemctl restart xinetd httpd dhcpd
+systemctl enable xinetd httpd dhcpd
+
 
 
 cp /usr/share/syslinux/{pxelinux.0,vesamenu.c32,ldlinux.c32,libcom32.c32,libutil.c32} /var/lib/tftpboot/
