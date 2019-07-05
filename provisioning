@@ -5,15 +5,10 @@ yum install dhcp tftp tftp-server syslinux xinetd httpd -y
 
 
 
-
-cp -v /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot
-cp -v /usr/share/syslinux/menu.c32 /var/lib/tftpboot
-cp -v /usr/share/syslinux/memdisk /var/lib/tftpboot
-cp -v /usr/share/syslinux/mboot.c32 /var/lib/tftpboot
-cp -v /usr/share/syslinux/chain.c32 /var/lib/tftpboot
-
+cp /usr/share/syslinux/{pxelinux.0,vesamenu.c32,ldlinux.c32,libcom32.c32,libutil.c32} /var/lib/tftpboot/
 mkdir /var/lib/tftpboot/pxelinux.cfg
- mkdir /var/lib/tftpboot/networkboot
+mkdir /var/lib/tftpboot/pxeboot
+mkdir /var/lib/tftpboot/media
 
 #Xinetd Config
 sed -i 's/disable\t\t\t= yes/disable = no/' /etc/xinetd.d/tftp
