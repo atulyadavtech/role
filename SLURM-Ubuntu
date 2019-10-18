@@ -1,0 +1,4 @@
+apt-get install -y sview libpmi0 libpmi0-dev libpmi2-0 libpmi2-0-dev libslurm-dev libslurm-perl libslurm32 libslurmdb-dev libslurmdb-perl libslurmdb32 r-cran-batchjobs slurm-wlm slurm-wlm-basic-plugins slurm-wlm-basic-plugins-dev slurmctld slurmd slurmdbd sview libmunge-dev libmunge2 munge mariadb-server 
+systemctl enable munge mysql
+systemctl start munge
+systemctl start mysql
