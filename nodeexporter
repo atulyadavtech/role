@@ -1,4 +1,4 @@
-##Node Exporter Installation "wget -O - 
+##Node Exporter Installation "wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/nodeexporter | bash"
 useradd --no-create-home --shell /bin/false node_exporter
 cd /tmp/
 wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
