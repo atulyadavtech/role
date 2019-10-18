@@ -1,12 +1,10 @@
 ##Node Exporter Installation "wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/nodeexporter | bash"
 useradd --no-create-home --shell /bin/false node_exporter
 cd /tmp/
-wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
+wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz -o /tmp/node_exporter-0.18.1.linux-amd64.tar.gz
+cd /tmp/
 tar -xvf node_exporter-0.18.1.linux-amd64.tar.gz
 cd node_exporter-0.18.1.linux-amd64/
-mv node_exporter /usr/local/bin/
-chown node_exporter:node_exporter /usr/local/bin/node_exporter
+mv node_exporter /usr/local/bin/;chown node_exporter:node_exporter /usr/local/bin/node_exporter
 wget https://raw.githubusercontent.com/atulyadavtech/role/master/node_exporter.service -O /etc/systemd/system/node_exporter.service
-systemctl daemon-reload
-systemctl start node_exporter
-systemctl enable node_exporter
+systemctl daemon-reload;systemctl start node_exporter;systemctl enable node_exporter
