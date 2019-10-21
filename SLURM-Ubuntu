@@ -2,3 +2,9 @@ apt-get install -y sview libpmi0 libpmi0-dev libpmi2-0 libpmi2-0-dev libslurm-de
 systemctl enable munge mysql
 systemctl start munge
 systemctl start mysql
+mysql -u root -e "create database slurm_acct_db";
+mysql -u root -e "create user 'slurm'@'localhost'";
+mysql -u root -e "set password for 'slurm'@'localhost' = password('slurmdbpass')";
+mysql -u root -e "grant usage on *.* to 'slurm'@'localhost'";
+mysql -u root -e "grant all privileges on slurm_acct_db.* to 'slurm'@'localhost'";
+mysql -u root -e "flush privileges"
