@@ -3,7 +3,13 @@
 yum install pacemaker pcs -y
 systemctl start pcsd.service
 systemctl enable pcsd.service
+systemctl enable --now corosync pacemaker
 echo hacluster | passwd --stdin hacluster
 pcs cluster auth server1.local server2.local -u hacluster -p hacluster
-pcs cluster start --all
 pcs cluster setup --name ganana-ha server1.local server2.local
+pcs cluster start --all
+pcs property set stonith-enabled=false
+
+pcs resource create VirtualIP IPaddr2 ip=10.1.1.10 cidr_netmask=24 --group ganana
+pcs resource create docker_res  op monitor interval=120s --group ganana
+pcs resource create docker_res systemd:docker --group ganana
