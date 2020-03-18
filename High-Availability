@@ -1,4 +1,4 @@
-#PCS Setup
+#PCS Setup  Redhat 7 And CentOS 7 
 
 yum install pacemaker pcs -y
 systemctl start pcsd.service
@@ -13,3 +13,20 @@ pcs property set stonith-enabled=false
 pcs resource create VirtualIP IPaddr2 ip=10.1.1.10 cidr_netmask=24 --group ganana
 pcs resource create docker_res  op monitor interval=120s --group ganana
 pcs resource create docker_res systemd:docker --group ganana
+
+
+
+##Moniter
+# pcs status
+# pcs config
+# pcs cluster status
+# pcs quorum status
+# pcs resource show
+# crm_verify -L -V
+# crm_mon 
+
+## Debug
+# pcs resource debug-start  <resource>
+# pcs resource debug-stop  <resource>
+# pcs resource debug-monitor  <resource>
+# pcs resource failcount show  <resource>
