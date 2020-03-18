@@ -1,0 +1,9 @@
+#PCS Setup
+
+yum install pacemaker pcs -y
+systemctl start pcsd.service
+systemctl enable pcsd.service
+echo hacluster | passwd --stdin hacluster
+pcs cluster auth server1.local server2.local -u hacluster -p hacluster
+pcs cluster start --all
+pcs cluster setup --name ganana-ha server1.local server2.local
