@@ -1,12 +1,19 @@
+## Package 
 apt-get install -y sview libpmi0 libpmi0-dev libpmi2-0 libpmi2-0-dev libslurm-dev libslurm-perl libslurm32 libslurmdb-dev libslurmdb-perl libslurmdb32 r-cran-batchjobs slurm-wlm slurm-wlm-basic-plugins slurm-wlm-basic-plugins-dev slurmctld slurmd slurmdbd sview libmunge-dev libmunge2 munge mariadb-server 
+
+## Munge Installation 
+userdel munge
+export MUNGEUSER=991
+groupadd -g $MUNGEUSER munge
+useradd -m -d /var/lib/munge -u $MUNGEUSER -g munge -s /sbin/nologin munge
+chown -R munge.  /etc/munge
+chown -R munge.  /var/log/munge
+chown -R munge.  /run/munge
+
 systemctl enable munge mysql
 systemctl start munge
 systemctl start mysql
-mkdir -p /var/spool/slurm/ctld
-mkdir -p /var/spool/slurmd
-mkdir -p /var/log/slurm
-chown -R slurm /var/spool/slurm
-chown -R slurm /var/spool/slurmd
+
 
 mysql -u root -e "create database slurm_acct_db";
 mysql -u root -e "create user 'slurm'@'localhost'";
@@ -14,3 +21,5 @@ mysql -u root -e "set password for 'slurm'@'localhost' = password('slurmdbpass')
 mysql -u root -e "grant usage on *.* to 'slurm'@'localhost'";
 mysql -u root -e "grant all privileges on slurm_acct_db.* to 'slurm'@'localhost'";
 mysql -u root -e "flush privileges"
+
+
