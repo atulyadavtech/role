@@ -13,5 +13,9 @@ echo "DefaultTimeoutStartSec=5s" >> /etc/systemd/system.conf
 echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
 
 #Modify the SSH Configuration for root access
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
+echo "Done"
 
 Create the profile /etc/profile.d/z-env.sh 
+
