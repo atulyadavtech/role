@@ -1,3 +1,4 @@
+##wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/Ubuntu | bash
 ##Ubuntu-18.04 Start UP
 
 #Disable Cloud Package 
@@ -14,8 +15,9 @@ echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
 
 #Modify the SSH Configuration for root access
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+echo "UseDNS no" >> /etc/ssh/sshd_config
 
+
+##Create the profile /etc/profile.d/z-env.sh 
+wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/f5dcd7f5acbdc3b4623ee967c69ea567166cfe0a/z-env.sh -O /etc/profile.d/z-env.sh
 echo "Done"
-
-Create the profile /etc/profile.d/z-env.sh 
-
