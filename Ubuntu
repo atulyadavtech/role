@@ -5,9 +5,10 @@
 echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
 apt-get purge cloud-init -y
 rm -rf /etc/cloud/; sudo rm -rf /var/lib/cloud/
-
+echo "Package Installation Done"
 #Disable the unwanted Pacakage
 systemctl disable apparmor cups cups-browsed speech-dispatcher spice-vdagent unattended-upgrades plymouth
+echo "Package Service Unwanted Done"
 
 #Modify the deafult time value for service recovery 
 echo "DefaultTimeoutStartSec=5s" >> /etc/systemd/system.conf
@@ -17,7 +18,8 @@ echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
+echo "SSH Done"
 
 ##Create the profile /etc/profile.d/z-env.sh 
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/f5dcd7f5acbdc3b4623ee967c69ea567166cfe0a/z-env.sh -O /etc/profile.d/z-env.sh
-echo "Done"
+echo "Final Done"
