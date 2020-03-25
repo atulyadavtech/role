@@ -18,7 +18,13 @@ echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
+
+https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
+https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
+
 echo "SSH Done"
+
+
 
 ##Create the profile /etc/profile.d/z-env.sh 
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/f5dcd7f5acbdc3b4623ee967c69ea567166cfe0a/z-env.sh -O /etc/profile.d/z-env.sh
