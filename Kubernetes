@@ -1,0 +1,22 @@
+##Docker Installation 
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+##Enable the br_netfilter module for cluster communication.
+modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+apt-get install apt-transport-https curl -y
+
+
+##Kubernetes Installation
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+
+
+
+
+kubeadm init --pod-network-cidr
+
+
