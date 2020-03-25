@@ -3,6 +3,11 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 
 ##Enable the br_netfilter module for cluster communication.
+vi /etc/ufw/sysctl.conf
+net/bridge/bridge-nf-call-ip6tables = 1
+net/bridge/bridge-nf-call-iptables = 1
+net/bridge/bridge-nf-call-arptables = 1
+
 modprobe br_netfilter
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
 
@@ -18,5 +23,6 @@ apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
 apt-get install kubeadm -y
 kubeadm init --pod-network-cidr=172.31.4.0/20
+kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 
