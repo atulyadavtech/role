@@ -16,7 +16,7 @@ apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
 
 
-
-kubeadm init --pod-network-cidr
+apt-get install kubeadm -y
+kubeadm init --pod-network-cidr=172.31.4.0/20
 
 
