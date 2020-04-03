@@ -22,11 +22,11 @@ https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profi
 https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
 
 echo "SSH Done"
-## Network Config
+echo "Network Config"
 sed -i -e 's/ens32/eth0/' /etc/netplan/50-cloud-init.yaml
 sed -i '10s/^/            dhcp-identifier: mac\n/' /etc/netplan/50-cloud-init.yaml
 
-## Grub Configuration
+echo "Grub Configuration"
 sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=""/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
