@@ -1,7 +1,7 @@
 ##Docker Installation 
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+wget -O - https://get.docker.com | bash
 
+## Enviorment Files
 wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/ssh-csh -O /etc/profile.d/ssh.csh
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/ssh-sh -O /etc/profile.d/ssh.sh
@@ -14,6 +14,8 @@ echo "net/bridge/bridge-nf-call-arptables = 1" >> /etc/ufw/sysctl.conf
 
 modprobe br_netfilter
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+sysctl -p
 
 ## Swap Disbaled
 sed -i -e 's|'/swap.img'|'#/swap.img'|' /etc/fstab
