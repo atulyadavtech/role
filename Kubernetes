@@ -34,11 +34,25 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
 
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
 
 apt-get install kubeadm -y
 
 kubeadm init --pod-network-cidr=172.31.4.0/20
+
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+kubectl version
+
+
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 
 
+kubectl get nodes
