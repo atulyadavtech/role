@@ -2,6 +2,21 @@
 dpkg --configure -a
 wget -O - https://get.docker.com | bash
 
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+
+docker info | grep -i cgroup
+
+
 ## Enviorment Files
 wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/ssh-csh -O /etc/profile.d/ssh.csh
@@ -19,6 +34,7 @@ echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
 sysctl -p
 
 ## Swap Disbaled
+swapoff -a
 sed -i -e 's|'/swap.img'|'#/swap.img'|' /etc/fstab
 
 ## Packages Installation 
