@@ -1,4 +1,5 @@
 ##Docker Installation 
+dpkg --configure -a
 wget -O - https://get.docker.com | bash
 
 ## Enviorment Files
