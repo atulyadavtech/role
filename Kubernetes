@@ -52,13 +52,14 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
 
-mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
-
 apt-get install kubeadm -y
 
+cat > /etc/profile.d/kube.config <<EOF
+export KUBECONFIG=/etc/kubernetes/admin.conf
+EOF
+
 kubeadm init --pod-network-cidr=172.31.4.0/20
+
 
 
 mkdir -p $HOME/.kube
