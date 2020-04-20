@@ -41,6 +41,7 @@ sed -i -e 's|'/swap.img'|'#/swap.img'|' /etc/fstab
 ## Packages Installation 
 apt-get install apt-transport-https curl nfs-kernel-server -y
 
+apt-get install -y singularity-container 
 
 ## SUDO User Setup
 echo "locuz ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
