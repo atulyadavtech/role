@@ -62,6 +62,10 @@ EOF
 
 kubeadm init --pod-network-cidr=172.31.0.0/16 --apiserver-advertise-address=$(hostname -I | cut -d" " -f1)
 
+
+/etc/kubernetes/kubepasswd.csv
+
+
 #Dashboard Installation And Configuration
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
@@ -85,9 +89,9 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 #cloud-native storage orchestrator
  
 
-#mkdir -p $HOME/.kube
-#cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-#chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl config view
 
