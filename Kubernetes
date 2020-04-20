@@ -60,6 +60,25 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 EOF
 
 kubeadm init --pod-network-cidr=172.31.0.0/16 --apiserver-advertise-address=$(hostname -I | cut -d" " -f1)
+
+#Dashboard Installation And Configuration
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+# Check existing secrets in kubernetes-dashboard namespace
+kubectl -n kubernetes-dashboard get secret
+Create the dashborad admin role
+cat > /root/dashboard-adminuser.yml <<EOF
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kube-system
+EOF
+
+kubectl apply -f dashboard-adminuser.yml
+
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+
 #helm Installation & Configuration
 
 #cloud-native storage orchestrator
