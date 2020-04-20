@@ -17,6 +17,7 @@ EOF
 
 docker info | grep -i cgroup
 
+systemctl enable docker;systemctl start  docker
 
 ## Enviorment Files
 wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
