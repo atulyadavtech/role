@@ -52,7 +52,7 @@ echo "locuz ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
-
+#Kubernetes version: v1.18.2
 apt-get install kubeadm -y
 
 cat > /etc/profile.d/kube.config <<EOF
