@@ -55,6 +55,7 @@ apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 
 #Kubernetes version: v1.18.2
 apt-get install kubeadm -y
+apt autoremove -y
 
 cat > /etc/profile.d/kube.config <<EOF
 export KUBECONFIG=/etc/kubernetes/admin.conf
