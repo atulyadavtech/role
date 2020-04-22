@@ -2,8 +2,8 @@
 dpkg --configure -a
 apt autoremove -y
 apt --fix-broken install
-
-wget -O - https://get.docker.com | bash
+apt-get install docker.io
+#wget -O - https://get.docker.com | bash
 #Docker version 19.03.8, build afacb8b7f0
 
 docker info | grep -i cgroup
@@ -47,6 +47,8 @@ apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 #Kubernetes version: v1.18.2
 apt-get install kubeadm -y
 apt autoremove -y
+
+apt-get install kubeadm=1.15\* kubelet=1.15\* kubeadm=1.15\*
 
 kubectl version --short
 #Client Version: v1.18.2
