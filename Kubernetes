@@ -3,18 +3,6 @@ dpkg --configure -a
 wget -O - https://get.docker.com | bash
 #Docker version 19.03.8, build afacb8b7f0
 
-cat > /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-
-
 docker info | grep -i cgroup
 
 systemctl enable docker;systemctl start  docker
