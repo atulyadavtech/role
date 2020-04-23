@@ -50,6 +50,12 @@ cat >/usr/lib/sysctl.d/51-default.conf<< EOF
 net.ipv4.ip_forward = 1
 EOF
 
+## Dsiable IPV6
+cat >/usr/lib/sysctl.d/51-default.conf<< EOF
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+EOF
 
 #Network File 
 mkdir /root/test
