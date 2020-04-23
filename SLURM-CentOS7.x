@@ -13,3 +13,17 @@ chmod 400 /etc/munge/munge.key
 chown -R munge: /etc/munge/ /var/log/munge/
 chmod 0700 /etc/munge/ /var/log/munge/
 systemctl enable munge
+
+yum install mariadb-server mariadb-devel -y
+systemctl enable mariadb.service
+systemctl start mariadb.service
+
+mysql -u root
+create database slurm_acct_db;
+create user 'slurm'@'localhost';
+set password for 'slurm'@'localhost' = password('slurmdbpass');
+grant usage on *.* to 'slurm'@'localhost';
+grant all privileges on slurm_acct_db.* to 'slurm'@'localhost';
+flush privileges;
+exit
+
