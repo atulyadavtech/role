@@ -27,3 +27,13 @@ grant all privileges on slurm_acct_db.* to 'slurm'@'localhost';
 flush privileges;
 exit
 
+Plugin Dir= /usr/lib64/slurm/
+
+mkdir -p /var/log/slurm
+mkdir -p /var/run/slurm
+mkdir -p /var/spool/slurm/d
+chown slurm: /var/run/slurm
+chown -R slurm: /var/spool/slurm
+chown slurm: /var/log/slurm
+
+
