@@ -5,6 +5,8 @@ systemctl get-default
 systemctl set-default multi-user.target
 systemctl get-default
 
+chmod +x /etc/rc.d/rc.local
+
 #Hostname Verfiycation 
 hostnamectl status
 hostname -A;hostname -d;hostname -f;hostname -i;hostname -I
