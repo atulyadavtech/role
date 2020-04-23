@@ -79,6 +79,10 @@ DEVICE="eth0"
 ONBOOT="yes"
 EOF
 
+
+## File
+wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
+
 #Remove initial screen on CentOS 7
 /etc/gdm/custom.conf
 [daemon]
