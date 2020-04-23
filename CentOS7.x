@@ -78,9 +78,6 @@ EOF
 [daemon]
 InitialSetupEnable=False
 
-#Grub Modification
-sed -i -e 's/quiet/quiet net.ifnames=0 biosdevname=0/' /etc/default/grub
-grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
 ##SSH FineTunning
@@ -91,3 +88,13 @@ echo 'UseDNS no' >> /etc/ssh/sshd_config
 /sbin/hwclock --systohc
 #sync your hardware clock with the system time
 hwclock --systohc
+
+
+#Grub Modification
+sed -i -e 's/quiet/quiet net.ifnames=0 biosdevname=0/' /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+#Build The New Intird Image
+cp /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.$(date +%m-%d-%H%M%S).bak;dracut -f -v
+reboot
