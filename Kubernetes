@@ -79,8 +79,7 @@ kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin
 kubectl describe secret $(kubectl get secrets | grep -i admin  | awk '{print $1}')
 
 #helm Installation & Configuration
-https://get.helm.sh/helm-v2.16.6-linux-amd64.tar.gz
-
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
 #cloud-native storage orchestrator
 
