@@ -47,12 +47,14 @@ apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
 #Kubernetes version: v1.18.2
 apt-get install kubeadm -y
 apt autoremove -y
-
-apt-get install kubeadm=1.15\* kubelet=1.15\* kubeadm=1.15\*
-
 kubectl version --short
 #Client Version: v1.18.2
 #Server Version: v1.18.2
+
+
+#For Version 1.15
+apt-get install kubeadm=1.15\* kubelet=1.15\* kubeadm=1.15\*
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.11/bin/linux/amd64/kubectl
 
 
 cat > /etc/profile.d/kube.config <<EOF
