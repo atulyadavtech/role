@@ -5,8 +5,9 @@ apt --fix-broken install
 apt-get install docker.io
 docker version --format '{{.Server.Version}}'
 
-DockerIO 19.03.6
 
+#Latest validated version: 18.09
+#DockerIO 19.03.6
 #wget -O - https://get.docker.com | bash
 #Docker version 19.03.8, build afacb8b7f0
 
