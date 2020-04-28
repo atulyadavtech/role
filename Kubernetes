@@ -78,6 +78,11 @@ kubectl create serviceaccount dashboard-admin-sa
 kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa
 kubectl describe secret $(kubectl get secrets | grep -i admin  | awk '{print $1}')
 
+## Network
+kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+## Ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.31.1/deploy/static/provider/baremetal/deploy.yaml
+
 #helm Installation & Configuration
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
@@ -86,8 +91,6 @@ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 kubectl config view
 
 kubectl version
-
-kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 kubectl get nodes
 
