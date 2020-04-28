@@ -1,0 +1,13 @@
+
+
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+kubectl --namespace kube-system create serviceaccount tiller
+helm init --service-account tiller --history-max 100 --wait
+helm version
+
+
+
+
+RELEASE=jhub
+NAMESPACE=jhub
+helm upgrade --install $RELEASE jupyterhub/jupyterhub --namespace $NAMESPACE --version=0.8.2   --values config.yaml
