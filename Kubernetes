@@ -3,6 +3,7 @@ dpkg --configure -a
 apt autoremove -y
 apt --fix-broken install
 apt-get install docker.io
+apt-get install docker.io=18\* -y
 docker version --format '{{.Server.Version}}'
 
 
