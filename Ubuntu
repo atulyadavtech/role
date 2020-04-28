@@ -1,6 +1,14 @@
 ##wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/Ubuntu | bash
 ##Ubuntu-18.04 Start UP
 
+lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.4 LTS
+Release:        18.04
+Codename:       bionic
+
+
 #Disable Cloud Package 
 echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
 apt-get purge cloud-init -y
