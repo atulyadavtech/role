@@ -6,6 +6,10 @@ apt-get install docker.io
 apt-get install docker.io=18\* -y
 docker version --format '{{.Server.Version}}'
 
+##
+ZDR1Nmk4cnBjaGg3NGw1MzAzN3M5cmk4YWo6NmMwYzBiYWUtNjYxZC00N2JjLWIxMTctY2Q3YzVhNzJiZTQw
+##
+
 
 #Latest validated version: 18.09
 #DockerIO 19.03.6
