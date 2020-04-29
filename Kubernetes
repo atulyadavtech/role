@@ -2,6 +2,17 @@
 dpkg --configure -a
 apt autoremove -y
 apt --fix-broken install
+
+## Packages Installation 
+apt-get install apt-transport-https curl nfs-kernel-server -y
+apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+
+# Install NFS Server
+apt install -y nfs-common
+
+
+## Docker Installation
 apt-get install docker.io
 apt-get install docker.io=18\* -y
 docker version --format '{{.Server.Version}}'
@@ -40,8 +51,6 @@ sysctl -p
 swapoff -a
 sed -i -e 's|'/swap.img'|'#/swap.img'|' /etc/fstab
 
-## Packages Installation 
-apt-get install apt-transport-https curl nfs-kernel-server -y
 
 apt-get install -y singularity-container 
 
@@ -67,6 +76,18 @@ apt-get install kubeadm=1.15\* kubelet=1.15\* kubeadm=1.15\*
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.11/bin/linux/amd64/kubectl
 
 
+##
+apt-get install -y kubelet=1.13.3-00 kubeadm=1.13.3-00 kubectl=1.13.3-00 kubernetes-cni=0.6.0-00
+
+apt-mark hold kubelet kubeadm kubectl kubernetes-cni
+
+
+# Restart services
+systemctl daemon-reload
+systemctl restart docker
+systemctl restart kubelet
+
+
 cat > /etc/profile.d/kube.config <<EOF
 export KUBECONFIG=/etc/kubernetes/admin.conf
 EOF
@@ -89,6 +110,8 @@ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.31.1/deploy/static/provider/baremetal/deploy.yaml
 
 #helm Installation & Configuration
+#Untaint all the nodes (this allows proper helm installation)
+kubectl taint nodes --all node-role.kubernetes.io/master-
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
 #cloud-native storage orchestrator
