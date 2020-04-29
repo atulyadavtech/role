@@ -106,6 +106,28 @@ kubectl describe secret $(kubectl get secrets | grep -i admin  | awk '{print $1}
 
 ## Network
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+
+metal_config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.126.152
+
+kubectl apply -f metal_config.yaml
+##############################3
+
 ## Ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.31.1/deploy/static/provider/baremetal/deploy.yaml
 
