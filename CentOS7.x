@@ -14,7 +14,7 @@ hostnamectl status
 hostname -A;hostname -d;hostname -f;hostname -i;hostname -I
 
 #TimeZone Setup
-timedatectl
+timedatectl set-timezone Asia/Kolkata
 timedatectl set-ntp yes
 
 
@@ -22,7 +22,7 @@ timedatectl set-ntp yes
 yum-config-manager --disable updates base extra
 
 yum clean all
-yum erase rdma -y
+yum erase rdma yum erase lvm2* -y
 yum group install "Development Tools" "Compatibility Libraries" -y
 yum install ntp lsscsi mlocate ipmitool nmap yum-plugin-changelog -y
 
@@ -85,6 +85,8 @@ EOF
 ## File
 wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/history-sh -O /etc/profile.d/history.sh
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
 
 
 #Remove initial screen on CentOS 7
