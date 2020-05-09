@@ -5,6 +5,8 @@ systemctl get-default
 systemctl set-default multi-user.target
 systemctl get-default
 
+echo "server11.local" > /etc/hostname
+
 chmod +x /etc/rc.d/rc.local
 
 #Hostname Verfiycation 
@@ -32,6 +34,7 @@ systemctl enable rpcbind
 systemctl enable nfs-lock
 systemctl enable nfs-server
 systemctl enable nfs-idmap
+systemctl enable ntpd
 
 ##disable unwanted service
 systemctl disable cups bluetooth firewalld NetworkManager
@@ -81,6 +84,8 @@ EOF
 
 ## File
 wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
+wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/history-sh -O /etc/profile.d/history.sh
+
 
 #Remove initial screen on CentOS 7
 /etc/gdm/custom.conf
