@@ -22,9 +22,10 @@ yum-config-manager --disable updates base extra
 yum clean all
 yum erase rdma -y
 yum group install "Development Tools" "Compatibility Libraries" -y
-yum install ntp lsscsi mlocate ipmitool nmap -y
+yum install ntp lsscsi mlocate ipmitool nmap yum-plugin-changelog -y
 
 systemctl mask firewalld;systemctl stop firewalld;yum -y install iptables-services;systemctl enable iptables;systemctl start iptables
+sync
 iptables --list;iptables --flush;iptables --delete-chain;service iptables save
 
 systemctl enable rpcbind
@@ -47,12 +48,8 @@ echo "master1.local" > /etc/hostname
 sed -i 's/=enforcing/=disabled/' /etc/selinux/config
 echo 0 >/selinux/enforce
 
-#Routing Enabled
-cat >/usr/lib/sysctl.d/51-default.conf<< EOF
-net.ipv4.ip_forward = 1
-EOF
 
-## Dsiable IPV6
+## Routing Enabled & Dsiable IPV6 
 cat >/usr/lib/sysctl.d/51-default.conf<< EOF
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.disable_ipv6 = 1
