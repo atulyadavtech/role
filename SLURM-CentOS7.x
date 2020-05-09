@@ -29,6 +29,7 @@ exit
 
 Plugin Dir= /usr/lib64/slurm/
 
+
 mkdir -p /var/log/slurm
 mkdir -p /var/run/slurm
 mkdir -p /var/spool/slurm/d
@@ -37,3 +38,7 @@ chown -R slurm: /var/spool/slurm
 chown slurm: /var/log/slurm
 
 
+##https://github.com/OleHolmNielsen/Slurm_tools
+##https://github.com/accre/SLURM
+https://github.com/SchedMD/slurm-gcp/blob/master/etc/slurmdbd.conf.tpl
+https://github.com/SchedMD/slurm-gcp/blob/master/etc/slurm.conf.tpl
