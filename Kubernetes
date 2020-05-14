@@ -7,6 +7,7 @@ apt --fix-broken install
 apt-get install apt-transport-https curl nfs-kernel-server -y
 apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
+echo "/home   *(rw,sync,no_root_squash,no_subtree_check) " >> /etc/exports
 
 # Install NFS Server
 apt install -y nfs-common
@@ -26,6 +27,20 @@ ZDR1Nmk4cnBjaGg3NGw1MzAzN3M5cmk4YWo6NmMwYzBiYWUtNjYxZC00N2JjLWIxMTctY2Q3YzVhNzJi
 #DockerIO 19.03.6
 #wget -O - https://get.docker.com | bash
 #Docker version 19.03.8, build afacb8b7f0
+
+
+# Set up the Docker daemon
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
 
 docker info | grep -i cgroup
 
@@ -80,6 +95,20 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.11/bin/
 apt-get install -y kubelet=1.13.3-00 kubeadm=1.13.3-00 kubectl=1.13.3-00 kubernetes-cni=0.6.0-00
 
 apt-mark hold kubelet kubeadm kubectl kubernetes-cni
+
+cat /etc/systemd/system/multi-user.target.wants/kubelet.service
+[Unit]
+Description=kubelet: The Kubernetes Node Agent
+Documentation=https://kubernetes.io/docs/home/
+
+[Service]
+ExecStart=/usr/bin/kubelet --runtime-cgroups=/systemd/system.slice --kubelet-cgroups=/systemd/system.slice
+Restart=always
+StartLimitInterval=0
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
 
 
 # Restart services
