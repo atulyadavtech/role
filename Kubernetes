@@ -176,3 +176,6 @@ kubectl get nodes
 kubectl get deployments
 
 kubectl get pods
+helm delete jhub --purge
+
+kubectl logs  po/hub-559f57447-jf2l6 --namespace=jhub
