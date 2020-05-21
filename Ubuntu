@@ -8,6 +8,8 @@ Description:    Ubuntu 18.04.4 LTS
 Release:        18.04
 Codename:       bionic
 
+timedatectl set-timezone Asia/Kolkata
+
 
 #Disable Cloud Package 
 echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
