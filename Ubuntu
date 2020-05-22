@@ -9,7 +9,8 @@ Release:        18.04
 Codename:       bionic
 
 timedatectl set-timezone Asia/Kolkata
-
+timedatectl set-ntp no
+apt install ntp -y
 
 #Disable Cloud Package 
 echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
