@@ -39,6 +39,7 @@ sed -i '10s/^/            dhcp-identifier: mac\n/' /etc/netplan/50-cloud-init.ya
 
 echo "Grub Configuration"
 sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=""/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"/' /etc/default/grub
+sed -i -e 's/"maybe-ubiquity "/"maybe-ubiquity net.ifnames=0 biosdevname=0"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #Ubdate the DNS 
