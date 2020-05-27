@@ -11,6 +11,7 @@ Codename:       bionic
 timedatectl set-timezone Asia/Kolkata
 timedatectl set-ntp no
 apt install ntp -y
+systemctl disable systemd-timesyncd
 
 #Disable Cloud Package 
 echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cfg
