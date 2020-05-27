@@ -35,7 +35,7 @@ https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/prof
 
 echo "SSH Done"
 echo "Network Config"
-sed -i -e 's/ens32/eth0/' /etc/netplan/50-cloud-init.yaml
+sed -i -e 's/ens32/eth0/' /etc/netplan/50-cloud-init.yaml ## as per your system network name 
 sed -i '10s/^/            dhcp-identifier: mac\n/' /etc/netplan/50-cloud-init.yaml
 
 echo "Grub Configuration"
