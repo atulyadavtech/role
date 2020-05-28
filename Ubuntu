@@ -30,8 +30,8 @@ echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "UseDNS no" >> /etc/ssh/sshd_config
 
-https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
-https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
 
 echo "SSH Done"
 echo "Network Config"
@@ -40,7 +40,7 @@ sed -i '10s/^/            dhcp-identifier: mac\n/' /etc/netplan/50-cloud-init.ya
 
 echo "Grub Configuration"
 sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=""/GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"/' /etc/default/grub
-sed -i -e 's/"maybe-ubiquity "/"maybe-ubiquity net.ifnames=0 biosdevname=0"/' /etc/default/grub
+sed -i -e 's/"maybe-ubiquity"/"maybe-ubiquity net.ifnames=0 biosdevname=0"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #Ubdate the DNS 
