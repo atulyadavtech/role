@@ -93,7 +93,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.11/bin/
 
 ##
 apt-get install -y kubelet=1.13.3-00 kubeadm=1.13.3-00 kubectl=1.13.3-00 kubernetes-cni=0.6.0-00
-
+kubeadm config images pull
 apt-mark hold kubelet kubeadm kubectl kubernetes-cni
 
 cat /etc/systemd/system/multi-user.target.wants/kubelet.service
