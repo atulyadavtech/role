@@ -7,4 +7,5 @@ Require all granted
 
 
 
-
+verify the File
+gmond -f -c /etc/ganglia/gmond.conf
