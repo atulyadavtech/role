@@ -48,7 +48,37 @@ chown slurm: /var/log/slurm
 /usr/lib/systemd/system/slurmd.service 
 /usr/lib/systemd/system/slurmctld.service
 
+####Script
+#!/bin/sh
 
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=36
+#SBATCH --job-name=xyz
+#SBATCH --error=_%j_%N.err
+#SBATCH --output=_%j_%N.out
+
+#SBATCH --partition=all
+
+export I_MPI_DEBUG=9
+
+echo "SLURM_JOBID="$SLURM_JOBID
+echo "SLURM_JOB_NODELIST"=$SLURM_JOB_NODELIST
+echo "SLURM_NNODES"=$SLURM_NNODES
+echo "SLURMTMPDIR="$SLURMTMPDIR
+echo "Date              = $(date)"
+echo "Hostname          = $(hostname -s)"
+echo ""
+echo "Number of Nodes Allocated      = $SLURM_JOB_NUM_NODES"
+echo "Number of Tasks Allocated      = $SLURM_NTASKS"
+echo "Number of Cores/Task Allocated = $SLURM_CPUS_PER_TASK"
+echo "Working Directory = $(pwd)"
+echo "working directory = "$SLURM_SUBMIT_DIR
+
+
+ulimit -s unlimited
+
+(time mpirun -np 36 execuatble -parallel) 2>&1 | tee output
+####
 
 
 ##https://github.com/OleHolmNielsen/Slurm_tools
