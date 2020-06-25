@@ -10,8 +10,13 @@ chown -R munge.  /etc/munge
 chown -R munge.  /var/log/munge
 chown -R munge.  /run/munge
 
+munge:x:991:991::/var/lib/munge:/sbin/nologin
+slurm:x:64030:64030::/nonexistent:/bin/false
+
+
 systemctl enable munge mysql
 systemctl start munge
+
 systemctl start mysql
 
 
