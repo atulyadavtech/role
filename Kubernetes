@@ -136,6 +136,7 @@ kubectl describe secret $(kubectl get secrets | grep -i admin  | awk '{print $1}
 ## Network
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
+kubeadm token create --print-join-command
 
 
 kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
@@ -156,6 +157,9 @@ data:
 
 kubectl apply -f metal_config.yaml
 ##############################3
+
+kubeadm token create --print-join-command
+
 
 ## Ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.31.1/deploy/static/provider/baremetal/deploy.yaml
