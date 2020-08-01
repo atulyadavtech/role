@@ -1,0 +1,23 @@
+##
+git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
+cd deepops
+git submodule update
+git checkout tags/20.06
+./scripts/setup.sh
+hostname -d
+vim config/inventory  ## Host Information
+vim config/group_vars/all.yml ## Time Zone and storage
+ansible all -m raw -a "hostname" -vvvv
+ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml
+./scripts/k8s_deploy_dashboard_user.sh
+./scripts/k8s_deploy_monitoring.sh
+
+##Ubuntu
+#update the home dircetory
+vim /etc/default/useradd
+
+
+
+## Default-Storage 
+helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/home --name=nfs-home --namespace=nfs
+helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/kube-storage --name=nfs-storage --namespace=nfs --set storageClass.defaultClass=true
