@@ -1,4 +1,5 @@
 ##
+grep VERSION /etc/dgx-release
 git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
 cd deepops
 git submodule update
@@ -21,3 +22,10 @@ vim /etc/default/useradd
 ## Default-Storage 
 helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/home --name=nfs-home --namespace=nfs
 helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/kube-storage --name=nfs-storage --namespace=nfs --set storageClass.defaultClass=true
+
+
+
+##Alias
+alias all='kubectl -n kube-system  get all'
+alias cluster='kubectl cluster-info;echo ""; kubectl get nodes -o wide;kubectl get cs'
+alias ns='kubectl get pods --all-namespaces'
