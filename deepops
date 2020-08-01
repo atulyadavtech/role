@@ -1,4 +1,20 @@
-##
+
+#Phase 1
+systemctl disable apparmor cups cups-browsed speech-dispatcher spice-vdagent unattended-upgrades plymouth
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
+wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
+
+#Modify the deafult time value for service recovery 
+echo "DefaultTimeoutStartSec=5s" >> /etc/systemd/system.conf
+echo "DefaultTimeoutStopSec=5s" >> /etc/systemd/system.conf
+
+#Modify the SSH Configuration for root access
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+echo "UseDNS no" >> /etc/ssh/sshd_config
+
+
+## Phase 2
+lsb_release -a
 grep VERSION /etc/dgx-release
 git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
 cd deepops
@@ -18,7 +34,7 @@ ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml
 vim /etc/default/useradd
 
 
-
+##Phase 3
 ## Default-Storage 
 apt install nfs-kernel-server -y
 systemctl enable  nfs-kernel-server
