@@ -19,7 +19,7 @@ grep VERSION /etc/dgx-release
 git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
 cd deepops
 git submodule update
-git checkout tags/20.06
+git checkout tags/20.06.1
 ./scripts/setup.sh
 hostname -d
 vim config/inventory  ## Host Information
