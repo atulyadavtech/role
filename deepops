@@ -14,6 +14,7 @@ echo "UseDNS no" >> /etc/ssh/sshd_config
 
 
 ## Phase 2
+timedatectl set-timezone Asia/Kolkata
 lsb_release -a
 grep VERSION /etc/dgx-release
 git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
