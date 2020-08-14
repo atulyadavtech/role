@@ -38,6 +38,7 @@ vim /etc/default/useradd
 ## Default-Storage 
 apt install nfs-kernel-server -y
 systemctl enable  nfs-kernel-server
+/home *(sync,rw,no_subtree_check,no_root_squash
 helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/home --name=nfs-home --namespace=nfs
 helm install stable/nfs-client-provisioner --set nfs.server=192.168.126.153 --set nfs.path=/kube-storage --name=nfs-storage --namespace=nfs --set storageClass.defaultClass=true
 
