@@ -52,6 +52,7 @@ systemctl enable  nfs-kernel-server
 echo "source /etc/profile.d/z-locuz.sh" >> /root/.bashrc
 
 ##Alias
+alias k='kubectl'
 alias all='kubectl -n kube-system  get all'
 alias cluster='kubectl cluster-info;echo ""; kubectl get nodes -o wide;kubectl get cs'
 alias ns='kubectl get pods --all-namespaces'
