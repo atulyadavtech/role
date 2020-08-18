@@ -20,7 +20,8 @@ grep VERSION /etc/dgx-release
 git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
 cd deepops
 git submodule update
-git checkout tags/20.06.1
+#git checkout tags/20.06.1
+git checkout tags/20.08
 ./scripts/setup.sh
 hostname -d
 vim config/inventory  ## Host Information
@@ -29,7 +30,6 @@ ansible all -m raw -a "hostname" -vvvv
 ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml
 ./scripts/k8s_deploy_dashboard_user.sh
 ./scripts/k8s_deploy_monitoring.sh
-
 
 
 
