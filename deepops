@@ -31,7 +31,9 @@ ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml
 ./scripts/k8s_deploy_dashboard_user.sh
 ./scripts/k8s_deploy_monitoring.sh
 
-
+./scripts/k8s_deploy_kubeflow.sh -x
+Kubeflow: http://mgmt:31380
+The default username is admin@kubeflow.org and the default password is 12341234.
 
 
 ##Ubuntu
