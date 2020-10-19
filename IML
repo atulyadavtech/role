@@ -2,8 +2,9 @@ Red Hat Enterprise Linux Server release 7.6 (Maipo)
 3.10.0-957.el7.x86_64
 kernel-3.10.0-957.el7.x86_64
 
-
-
+fence-agents-virsh-4.2.1-11.el7.x86_64.rpm
+yum-plugin-priorities-1.1.31-24.el7.noarch.rpm
+yum-plugin-priorities
 ## Repo RHEL7.6
 [media1]
 name=$releasever - Media
