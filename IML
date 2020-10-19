@@ -29,6 +29,13 @@ name=$releasever - rs
 baseurl=file:///rhel7.6/1/addons/ResilientStorage
 gpgcheck=0
 enabled=1
+
+[IML]
+name=$releasever - IML
+baseurl=file:///rhel7.6/iml5.0/
+priority=1
+gpgcheck=0
+enabled=1
 ###
 
 # Verify the priorites 
