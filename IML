@@ -31,7 +31,11 @@ gpgcheck=0
 enabled=1
 ###
 
+# Verify the priorites 
+sed -n -e "/^\[/h; /priority *=/{ G; s/\n/ /; s/ity=/ity = /; p }" /etc/yum.repos.d/*.repo | sort -k3n
+yum-config-manager | egrep "^\\[|priority ="
 
+##
 wget https://github.com/whamcloud/integrated-manager-for-lustre/releases/download/v5.0.0.0/chroma_support.repo
 yum install -y python2-iml-manager
 yum install fence-agents-virsh-4.2.1-11.el7_6.1.x86_64.rpm
