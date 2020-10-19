@@ -1,0 +1,37 @@
+Red Hat Enterprise Linux Server release 7.6 (Maipo)
+3.10.0-957.el7.x86_64
+kernel-3.10.0-957.el7.x86_64
+
+
+
+## Repo RHEL7.6
+[media1]
+name=$releasever - Media
+baseurl=file:///rhel7.6/1
+gpgcheck=0
+enabled=1
+
+[media2]
+name=$releasever - Media1
+baseurl=file:///rhel7.6/2
+gpgcheck=0
+enabled=1
+
+[ha]
+name=$releasever - ha
+baseurl=file:///rhel7.6/1/addons/HighAvailability
+gpgcheck=0
+enabled=1
+
+[rs]
+name=$releasever - rs
+baseurl=file:///rhel7.6/1/addons/ResilientStorage
+gpgcheck=0
+enabled=1
+###
+
+
+wget https://github.com/whamcloud/integrated-manager-for-lustre/releases/download/v5.0.0.0/chroma_support.repo
+yum install -y python2-iml-manager
+yum install fence-agents-virsh-4.2.1-11.el7_6.1.x86_64.rpm
+
