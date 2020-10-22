@@ -3,9 +3,14 @@
 Benchmark
 
 
-SLURM Policy
-SLURM HA
 SLURM Automation
+SLURM Policy ( 1, 2 , 3 , 4 etc)
+GPU Level
+CPU Level
+User Level
+Resource 
+
+SLURM HA
 SLURM AWS
 SLURM Monitering
 
