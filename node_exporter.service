@@ -8,6 +8,7 @@ After=network.target
 #Group=node_exporter
 Type=simple
 ExecStart=/usr/local/bin/node_exporter
+#ExecStart=/usr/local/bin/node_exporter --collector.textfile.directory=/run/prometheus
 
 [Install]
 WantedBy=multi-user.target
