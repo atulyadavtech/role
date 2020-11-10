@@ -4,8 +4,8 @@ Description=Node Exporter
 After=network.target
 
 [Service]
-User=node_exporter
-Group=node_exporter
+#User=node_exporter
+#Group=node_exporter
 Type=simple
 ExecStart=/usr/local/bin/node_exporter
 
