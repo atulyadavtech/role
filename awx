@@ -2,7 +2,7 @@ CentOS Linux release 7.7.1908 (Core)
 
 
 yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-yum -y install git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python-pip python-devel docker-ce libffi-devel
+yum -y install git gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python-pip python-devel docker-ce libffi-devel docker-compose
 systemctl enable --now docker.service
 pip install --upgrade pip
 pip3 install docker
@@ -14,3 +14,6 @@ git clone --depth 50 https://github.com/ansible/awx.git
 sed -i 's|admin_password=.*|admin_password=root@123|g' inventory
 openssl rand -base64 30
 grep -v '^#' inventory | grep -v '^$'
+
+
+ansible-playbook -i inventory install.yml -v
