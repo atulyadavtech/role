@@ -12,7 +12,7 @@ mkdir /etc/prometheus;mkdir /var/lib/prometheus
 wget https://github.com/prometheus/prometheus/releases/download/v2.7.1/prometheus-2.7.1.linux-amd64.tar.gz
 tar -xvf prometheus-2.7.1.linux-amd64.tar.gz
 cd prometheus-2.7.1.linux-amd64
-mv console* /etc/prometheus;mv prometheus.yml /etc/prometheus
+mv console* /etc/prometheus;mv prometheus.yml /etc/prometheus;mv prometheus /usr/local/bin/;mv promtool /usr/local/bin/
 
 wget https://raw.githubusercontent.com/atulyadavtech/role/master/prometheus.service -O /etc/systemd/system/prometheus.service
 
