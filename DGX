@@ -1,0 +1,13 @@
+wget -O f1-changelogs http://changelogs.ubuntu.com/meta-release-lts
+wget -O f2-archive http://archive.ubuntu.com/ubuntu/dists/focal/Release
+wget -O f3-security http://security.ubuntu.com/ubuntu/dists/focal/Release
+wget -O f4-nvidia-baseos http://repo.download.nvidia.com/baseos/ubuntu/focal/x86_64/dists/focal/Release
+wget -O f5-nvidia-cuda https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/Release
+
+
+
+
+
+binary 
+wget https://raw.githubusercontent.com/Stifler6996/apt-mirror/master/apt-mirror
+git clone https://github.com/Stifler6996/apt-mirror
