@@ -25,7 +25,9 @@ git clone --recurse-submodules https://github.com/NVIDIA/deepops.git
 cd deepops
 git submodule update
 #git checkout tags/20.06.1
-git checkout tags/20.08
+#git checkout tags/20.08
+wget https://github.com/NVIDIA/deepops/archive/20.12.tar.gz
+tar -xvzf 20.12.tar.gz
 ./scripts/setup.sh
 hostname -d
 vim config/inventory  ## Host Information
