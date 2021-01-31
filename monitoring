@@ -8,7 +8,7 @@ dpkg -i grafana_7.3.1_amd64.deb
 apt-get install -f
 
 ##RHEL
-wget wget https://dl.grafana.com/oss/release/grafana-7.3.7-1.x86_64.rpm
+wget https://dl.grafana.com/oss/release/grafana-7.3.7-1.x86_64.rpm
 yum install grafana-7.3.7-1.x86_64.rpm
 
 
