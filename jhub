@@ -1,0 +1,10 @@
+helm version
+helm list
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+helm version
+helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
+helm repo update
+helm list
+
+
+kubectl --namespace=jhub get pod
