@@ -8,6 +8,7 @@ helm list
 
 
 kubectl --namespace=jhub get pod
+kubectl --namespace=jhub get svc proxy-public
 kubectl describe services proxy-public -n jhub  -o widessh 
 
 ldapsearch -x -b "dc=wadhwaniai,dc=org" -H ldap://localhost | grep -i rahulm
