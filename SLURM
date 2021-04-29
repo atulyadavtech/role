@@ -22,9 +22,18 @@ sprio -w  # List weight factors used by the multifactor scheduler
 slurmd -C
 
 
+
+slurm_configure:  './configure --prefix={{ slurm_install_prefix }} --disable-dependency-tracking --disable-debug --disable-x11 --enable-really-no-cray --enable-salloc-kill-cmd --with-hdf5=no --sysconfdir={{ slurm_config_dir }} --enable-pam --with-pam_dir={{ slurm_pam_lib_dir }} --without-shared-libslurm --without-rpath --with-pmix={{ pmix_install_prefix }} --with-hwloc={{ hwloc_install_prefix }}'
+
+https://github.com/NVIDIA/pyxis
+pmix_src_url: "https://github.com/openpmix/openpmix/releases/download/v{{ pmix_version }}/pmix-{{ pmix_version }}.tar.bz2"
+
 #SQL DataBase
 #/etc/my.cnf
 [mysqld]
 innodb_buffer_pool_size=1024M
 innodb_log_file_size=64M
 innodb_lock_wait_timeout=900
+
+https://github.com/mlperf/training_results_v0.5/blob/master/v0.5.0/nvidia/submission/code/image_classification/mxnet/run.sub
+
