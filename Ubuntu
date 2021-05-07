@@ -18,9 +18,23 @@ echo 'datasource_list: [ None ]' | sudo -s tee /etc/cloud/cloud.cfg.d/90_dpkg.cf
 apt-get purge cloud-init -y
 rm -rf /etc/cloud/; sudo rm -rf /var/lib/cloud/
 echo "Package Installation Done"
+#Remove unwanted pacakge 
+apt remove unattended-upgrades -y 
+
 #Disable the unwanted Pacakage
 systemctl disable apparmor cups cups-browsed speech-dispatcher spice-vdagent unattended-upgrades plymouth
 echo "Package Service Unwanted Done"
+
+##Required Package
+apt-get update
+apt-get install apt-file nfs-common build-essential mlocate libfreeipmi-dev libreadline-dev liblz4-dev libhdf5-dev
+
+
+
+dpkg --configure -a
+apt autoremove -y
+apt-get clean
+apt --fix-broken install
 
 #Modify the deafult time value for service recovery 
 echo "DefaultTimeoutStartSec=5s" >> /etc/systemd/system.conf
