@@ -21,7 +21,9 @@ sprio -w  # List weight factors used by the multifactor scheduler
 
 slurmd -C
 
-
+wget https://download.schedmd.com/slurm/slurm-20.11.6.tar.bz2
+tar xvjf slurm-20.11.6.tar.bz2
+/configure --prefix=/tmp/slurm-build --sysconfdir=/etc/slurm --enable-pam --with-pam_dir=/lib/x86_64-linux-gnu/security/ --without-shared-libslurm --with-freeipmi --with-rrdtool --enable-salloc-kill-cmd --disable-x11 --enable-really-no-cray
 
 slurm_configure:  './configure --prefix={{ slurm_install_prefix }} --disable-dependency-tracking --disable-debug --disable-x11 --enable-really-no-cray --enable-salloc-kill-cmd --with-hdf5=no --sysconfdir={{ slurm_config_dir }} --enable-pam --with-pam_dir={{ slurm_pam_lib_dir }} --without-shared-libslurm --without-rpath --with-pmix={{ pmix_install_prefix }} --with-hwloc={{ hwloc_install_prefix }}'
 
