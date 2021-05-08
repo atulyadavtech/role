@@ -21,6 +21,10 @@ sprio -w  # List weight factors used by the multifactor scheduler
 
 slurmd -C
 
+slurm:x:64030:64030::/nonexistent:/usr/sbin/nologin
+export SLURMUSER=64030
+useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm
+
 wget https://download.schedmd.com/slurm/slurm-20.11.6.tar.bz2
 tar xvjf slurm-20.11.6.tar.bz2
 /configure --prefix=/tmp/slurm-build --sysconfdir=/etc/slurm --enable-pam --with-pam_dir=/lib/x86_64-linux-gnu/security/ --without-shared-libslurm --with-freeipmi --with-rrdtool --enable-salloc-kill-cmd --disable-x11 --enable-really-no-cray
