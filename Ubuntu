@@ -68,3 +68,5 @@ echo "nameserver 8.8.8.8 " >> /etc/resolvconf/resolv.conf.d/head
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/f5dcd7f5acbdc3b4623ee967c69ea567166cfe0a/z-env.sh -O /etc/profile.d/z-env.sh
 echo "Final Done"
 
+## Fine Tune
+service --status-all  # List all Services
