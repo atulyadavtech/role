@@ -1,0 +1,19 @@
+### Test1   
+
+Selection of OS/AMI
+
+Customization Of AS/AMI
+
+
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+echo "export PATH=$PATH:/usr/local/bin:/root/.local/bin " >> /etc/profile.d/z-env.sh 
+export PATH=$PATH:/root/.local/bin
+
+
+Subnet 10.0.0.0/20
+
+
+aws-parallelcluster-2.10.4-centos7-hvm-x86_64-202105141354 (ami-0213a3307c0c4e08c)
