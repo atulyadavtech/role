@@ -18,7 +18,7 @@ scontrol update nodename=a001 state=resume
 sprio     # List job priorities
 sprio -l  # List job priorities including username etc.
 sprio -w  # List weight factors used by the multifactor scheduler
-
+sinfo -o "%20N  %10c  %10m  %25f  %10G " ## List All Features
 slurmd -C
 
 slurm:x:64030:64030::/nonexistent:/usr/sbin/nologin
