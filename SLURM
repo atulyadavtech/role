@@ -19,6 +19,10 @@ sprio     # List job priorities
 sprio -l  # List job priorities including username etc.
 sprio -w  # List weight factors used by the multifactor scheduler
 sinfo -o "%20N  %10c  %10m  %25f  %10G " ## List All Features
+alias si="sinfo -o '%8P %10n %.11T %.4c %.8z %.6m %12G %10l %10L %10O %20E' -S '-P'"
+alias sq="squeue -Su -o '%8i %10u %20j %4t %5D %20R %15b %3C %7m %11l %11L'"
+alias sst='sstat --format=JobID,NTasks,AveCPU,AveCPUFreq,AveRSS,MaxRSS -j'
+
 slurmd -C
 
 slurm:x:64030:64030::/nonexistent:/usr/sbin/nologin
