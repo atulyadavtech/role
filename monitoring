@@ -1,5 +1,3 @@
-
-
 ## Grafana
 
 ##UBuntu
@@ -14,8 +12,6 @@ yum install grafana-7.3.7-1.x86_64.rpm
 
 systemctl enable grafana-server
 systemctl restart  grafana-server (http://ipserver:3000)
-
-
 
 
 
