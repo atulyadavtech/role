@@ -1,4 +1,4 @@
-##wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/Ubuntu | bash
+##wget -O - https://raw.githubusercontent.com/atulyadavtech/role/master/ubuntu-generic | bash
 
 timedatectl set-timezone Asia/Kolkata
 
