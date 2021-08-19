@@ -17,7 +17,8 @@ echo "Package Service Unwanted Done"
 ##Required Package
 apt-get update
 apt-get upgrade
-apt-get install apt-file nfs-common build-essential mlocate libfreeipmi-dev libreadline-dev liblz4-dev libhdf5-dev
+apt-get install apt-file nfs-common build-essential mlocate 
+#libfreeipmi-dev libreadline-dev liblz4-dev libhdf5-dev
 
 dpkg --configure -a
 apt autoremove -y
