@@ -30,6 +30,10 @@ aws sts get-caller-identity --query Arn  # Validate the IAM role
 
 #isito
 
+# Install aws-iam-authenticator
+curl -sLO "https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator"
+sudo install -o root -g root -m 0755 aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
+rm -f ./aws-iam-authenticator
 
 echo 'yq() {
   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
@@ -67,9 +71,16 @@ eksctl version
 eksctl create cluster --name $CLUSTER_NAME --region $AWS_REGION --without-nodegroup --version=1.21.2
 kubectl version --short
 aws eks describe-cluster --name eksworkshop-eksctl --query cluster.identity.oidc.issuer --output text
-eksctl utils associate-iam-oidc-provider --cluster $CLUSTER_NAME --approve
+#AWS Identity and Access Management OIDC provider and associate it with your cluster.
+eksctl utils associate-iam-oidc-provider --region $AWS_REGION --cluster $CLUSTER_NAME --approve
 
+
+#Deploy the Metrics Server
+
+#Create the Node Group
 eksctl create nodegroup --cluster $CLUSTER_NAME --instance-types m5a.xlarge --managed --spot --name $GROUP --asg-access --nodes-min 0 --nodes-max 4 --nodes 1
+
+
 kubectl get crd
 kubectl get nodes -o wide
 kubectl get pods -o wide
@@ -81,6 +92,9 @@ aws sts get-caller-identity
 aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTRE_NAME
 kubectl get svc
 
+VPC_ID=$(aws eks describe-cluster --name $CLUSTER_NAME --query "cluster.resourcesVpcConfig.vpcId" --output text)
+CIDR_BLOCK=$(aws ec2 describe-vpcs --vpc-ids $VPC_ID --query "Vpcs[].CidrBlock" --output text)
+
 STACK_NAME=$(eksctl get nodegroup --cluster $CLUSTER_NAME -o json | jq -r '.[].StackName')
 ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
 echo "export ROLE_NAME=${ROLE_NAME}" | tee -a ~/.bash_profile
@@ -88,6 +102,15 @@ echo "export ROLE_NAME=${ROLE_NAME}" | tee -a ~/.bash_profile
 aws iam attach-role-policy \
     --policy-arn arn:aws:iam::aws:policy/AmazonEKSVPCResourceController \
     --role-name ${ROLE_NAME}
+
+##Create a IAM role and ServiceAccount for the Load Balancer controller
+eksctl create iamserviceaccount \
+  --cluster eksworkshop-eksctl \
+  --namespace kube-system \
+  --name aws-load-balancer-controller \
+  --attach-policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/AWSLoadBalancerControllerIAMPolicy \
+  --override-existing-serviceaccounts \
+  --approve
 
 #Verify the AWS auth map
 kubectl describe configmap -n kube-system aws-auth
