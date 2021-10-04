@@ -22,6 +22,11 @@ export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
 export VPC_ID=vpc-xxxxxxxxxxxxxxxxxxx
 
 #Create the IAM role with Admin
+
+aws configure set default.region ${AWS_REGION}
+aws configure get default.region
+aws sts get-caller-identity --query Arn  # Verify the IAM Role 
+
 isito
 echo 'yq() {
   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
