@@ -22,7 +22,8 @@ export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
 export VPC_ID=vpc-xxxxxxxxxxxxxxxxxxx
 
 #Create the IAM role with Admin and attach with the mgmt server
-
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_ACCESS_KEY_ID
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
 aws sts get-caller-identity --query Arn  # Validate the IAM role
@@ -64,14 +65,50 @@ sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/lat
 eksctl version
 
 eksctl create cluster --name $CLUSTER_NAME --region $AWS_REGION --without-nodegroup --version=1.21.2
+kubectl version --short
+aws eks describe-cluster --name eksworkshop-eksctl --query cluster.identity.oidc.issuer --output text
+eksctl utils associate-iam-oidc-provider --cluster $CLUSTER_NAME --approve
+
 eksctl create nodegroup --cluster $CLUSTER_NAME --instance-types m5a.xlarge --managed --spot --name $GROUP --asg-access --nodes-min 0 --nodes-max 4 --nodes 1
+
+kubectl get nodes -o wide
+kubectl get pods -o wide
+
+
 
 aws --version
 aws sts get-caller-identity
 aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTRE_NAME
 kubectl get svc
+
+STACK_NAME=$(eksctl get nodegroup --cluster $CLUSTER_NAME -o json | jq -r '.[].StackName')
+ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
+echo "export ROLE_NAME=${ROLE_NAME}" | tee -a ~/.bash_profile
+
+aws iam attach-role-policy \
+    --policy-arn arn:aws:iam::aws:policy/AmazonEKSVPCResourceController \
+    --role-name ${ROLE_NAME}
+
+#Verify the AWS auth map
+kubectl describe configmap -n kube-system aws-auth
+
 ##Install the HELM
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
 chmod 700 get_helm.sh
 ./get_helm.sh
+helm version --short
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+
+helm completion bash >> ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
+source <(helm completion bash)
+
+
+
+
+
+kubectl get deployments
+
 
