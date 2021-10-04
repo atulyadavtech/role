@@ -70,7 +70,7 @@ aws eks describe-cluster --name eksworkshop-eksctl --query cluster.identity.oidc
 eksctl utils associate-iam-oidc-provider --cluster $CLUSTER_NAME --approve
 
 eksctl create nodegroup --cluster $CLUSTER_NAME --instance-types m5a.xlarge --managed --spot --name $GROUP --asg-access --nodes-min 0 --nodes-max 4 --nodes 1
-
+kubectl get crd
 kubectl get nodes -o wide
 kubectl get pods -o wide
 
