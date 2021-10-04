@@ -21,11 +21,11 @@ export KF_DIR=${BASE_DIR}/${KF_NAME}
 export CONFIG_FILE=${KF_DIR}/kfctl_aws.yaml
 export VPC_ID=vpc-xxxxxxxxxxxxxxxxxxx
 
-#Create the IAM role with Admin
+#Create the IAM role with Admin and attach with the mgmt server
 
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
-aws sts get-caller-identity --query Arn  # Verify the IAM Role 
+aws sts get-caller-identity --query Arn  # Validate the IAM role
 
 isito
 echo 'yq() {
