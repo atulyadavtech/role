@@ -48,6 +48,7 @@ sudo ./aws/install
 
 #Install the Kubectl
 sudo curl --silent --location -o /usr/local/bin/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+sudo chmod 755 /usr/local/bin/kubectl 
 
 # Verify the binary
 for command in kubectl jq envsubst aws
@@ -65,12 +66,12 @@ echo 'export LBC_VERSION="v2.2.0"' >>  ~/.bash_profile
 
 #Create the EKS Cluster
 
-sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C  /usr/local/bin/
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | sudo tar xz -C  /usr/local/bin/
 eksctl version
 
-eksctl create cluster --name $CLUSTER_NAME --region $AWS_REGION --without-nodegroup --version=1.21.2
+eksctl create cluster --name $CLUSTER_NAME --region $AWS_REGION --without-nodegroup --version=1.21
 kubectl version --short
-aws eks describe-cluster --name eksworkshop-eksctl --query cluster.identity.oidc.issuer --output text
+aws eks describe-cluster --name $CLUSTER_NAME --query cluster.identity.oidc.issuer --output text
 #AWS Identity and Access Management OIDC provider and associate it with your cluster.
 eksctl utils associate-iam-oidc-provider --region $AWS_REGION --cluster $CLUSTER_NAME --approve
 
@@ -105,7 +106,7 @@ aws iam attach-role-policy \
 
 ##Create a IAM role and ServiceAccount for the Load Balancer controller
 eksctl create iamserviceaccount \
-  --cluster eksworkshop-eksctl \
+  --cluster $CLUSTER_NAME \
   --namespace kube-system \
   --name aws-load-balancer-controller \
   --attach-policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/AWSLoadBalancerControllerIAMPolicy \
@@ -113,7 +114,7 @@ eksctl create iamserviceaccount \
   --approve
 
 #Verify the AWS auth map
-kubectl describe configmap -n kube-system aws-auth
+kubectl describe configmap -n kube-system
 
 ##Install the HELM
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
