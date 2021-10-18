@@ -4,7 +4,7 @@
 
 chmod +x /etc/rc.d/rc.local
 vi /etc/yum.repos.d/CentOS-Base.repo
-yum install wget vim -y
+yum install wget vim net-tools -y
 
 #Hostname Setup  
 vim /etc/hosts
