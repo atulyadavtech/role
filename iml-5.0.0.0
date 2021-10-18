@@ -1,5 +1,7 @@
 ## WhamCloud IML Installation and Configuration
 
+#Operating System : https://vault.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+
 chmod +x /etc/rc.d/rc.local
 vi /etc/yum.repos.d/CentOS-Base.repo
 yum install wget vim -y
