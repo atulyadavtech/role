@@ -1,1 +1,26 @@
 
+enable
+
+##Configure out of band (OOB) management port 
+interface ManagementEthernet 1/1 
+ip address
+no shutdown
+exit
+username admin privilege 15 password 0 <yourpassword>
+enable password level 15 0 <yourpassword>
+
+
+#spanning-tree rstp edge-port
+
+
+Switch Port no shutdown no ip address
+
+
+Save configuration 
+
+
+For HA
+Spanning Tree Protocol       Disable
+Fast Ethernet                Enable
+Multicasting                 Enable
+Broadcasting                 Enable 
