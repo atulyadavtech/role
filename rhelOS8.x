@@ -25,3 +25,8 @@ UseDNS no
 AddressFamily inet
 X11Forwarding yes
 X11UseLocalhost no
+
+
+yum install network-scripts -y
+
+echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-ens*
