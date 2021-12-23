@@ -30,3 +30,7 @@ X11UseLocalhost no
 yum install network-scripts -y
 
 echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-ens*
+
+
+echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
+echo "AddressFamily inet" >> /etc/ssh/sshd_config
