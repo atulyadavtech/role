@@ -60,3 +60,6 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/data/usr/local/altair/licensing14.5/bin
 
 
 useradd pbsdata
+
+
+https://IPAddress:4443/pbsworks/login
