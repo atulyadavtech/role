@@ -1,4 +1,4 @@
-yum install xauth
+yum install xauth  xterm
 cp /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).bak.$(date +%m-%d-%H%M%S).img
 yum install chronyd
 
