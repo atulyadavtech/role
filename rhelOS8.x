@@ -51,7 +51,7 @@ echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 echo "AddressFamily inet" >> /etc/ssh/sshd_config
 systemctl restart sshd
 
-
+systemctl disable rhsmcertd.service ModemManager.service
 
 ## Altair Enviorment 
 source /etc/pbsworks-pa.conf
