@@ -1,0 +1,12 @@
+
+
+
+yum install qemu-kvm libvirt libvirt-python libguestfs-tools virt-install virt-manager -y
+
+virsh list --all
+
+virsh define --file /path/vm_name.xml
+
+virsh start vm_name
+virsh shutdown vm_name
+virt-manager
