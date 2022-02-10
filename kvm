@@ -4,7 +4,7 @@
 yum install qemu-kvm libvirt libvirt-python libguestfs-tools virt-install virt-manager -y
 
 virsh list --all
-
+virsh dumpxml vm_name > vm_name.xml
 virsh define --file /path/vm_name.xml
 
 virsh start vm_name
