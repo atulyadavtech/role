@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# 11-Sep-2020
+#
+# Add User on HWUL cluster
+# - prompt for user name
+# - create user with default password
+# - update NIS
+# - ssh to bmhead and create samba password for user
+
+if [ "${USER}" != "root" ]; then
+echo "You must be root to run this script"
+echo "Try: sudo /usr/local/bin/hwuluseradd"
+exit
+fi
+echo "This script will add a new user to HWUL"
+read -p "Enter the full name of the user (first and last name): " fullname
+
+read -p "Enter the username: " newuser
+
+echo ""
+echo "================================="
+useradd -c "$fullname" $newuser
+echo ""
+echo "================================="
+newPass='HyperWUL'
+echo "Setting default passwd ($newPass) for $newuser"
+echo $newPass | passwd --stdin $newuser
+echo ""
+echo "================================="
+echo "Updating NIS"
+cd /var/yp; make
+echo ""
+echo "================================="
+echo "Setting default Samba passwd ($newPass) for $newuser on bmhead"
+ssh bmhead "echo -e '$newPass\n$newPass' | smbpasswd -a $newuser -s"
+ssh bmhead smbpasswd -e $newuser
+echo ""
+echo "================================="
+echo "Switching user to $newuser -- please check the config, then enter ctl-D"
+su - $newuser
