@@ -83,7 +83,7 @@ EOF
 
 
 ## File
-wget https://raw.githubusercontent.com/atulyadavtech/ganana/master/limits.conf -O /etc/security/limits.conf
+wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/limits.conf -O /etc/security/limits.conf
 wget https://raw.githubusercontent.com/atulyadavtech/Conf-Files/master/history-sh -O /etc/profile.d/history.sh
 wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.sh -O /etc/profile.d/ssh.sh
 wget https://raw.githubusercontent.com/atulyadavtech/help/master/ssh.csh -O /etc/profile.d/ssh.csh
